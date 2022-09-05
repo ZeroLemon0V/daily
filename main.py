@@ -56,9 +56,17 @@ def get_weather(region):
     weather = response["now"]["text"]
     # 当前温度
     temp = response["now"]["temp"] + u"\N{DEGREE SIGN}" + "C"
+    # 体感温度
+    feelsLike = response["now"]["feelsLike"] + u"\N{DEGREE SIGN}" + "C"
     # 风向
     wind_dir = response["now"]["windDir"]
-    return weather, temp, wind_dir
+    # 相对湿度
+    humidity = response["now"]["humidity"]
+    # 当前小时累计降水量，默认单位：毫米
+    precip = response["now"]["precip"] + "毫米"
+
+
+    return weather, temp, wind_dir,feelsLike,precip,humidity
  
  
 def get_birthday(birthday, year, today):
@@ -157,8 +165,20 @@ def send_message(to_user, access_token, region_name, weather, temp, wind_dir, no
                 "value": temp,
                 "color": get_color()
             },
+            "feelsLike": {
+                "value": feelsLike,
+                "color": get_color()
+            },
             "wind_dir": {
                 "value": wind_dir,
+                "color": get_color()
+            },
+            "humidity": {
+                "value": humidity,
+                "color": get_color()
+            },
+            "precip": {
+                "value": precip,
                 "color": get_color()
             },
             "love_day": {
