@@ -61,7 +61,7 @@ def get_weather(region):
     # 风向
     wind_dir = response["now"]["windDir"]
     # 相对湿度
-    humidity = response["now"]["humidity"]
+    humidity = response["now"]["humidity"]+"%"
     # 当前小时累计降水量，默认单位：毫米
     precip = response["now"]["precip"] + "毫米"
 
