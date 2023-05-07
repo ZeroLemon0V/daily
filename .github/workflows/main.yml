@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   schedule: 
     # 代表国际标准时间23点0分，北京时间需要+8小时，代表北京时间上午7点运行
-    - cron: '10 23 * * *'
+    - cron: '20 23 * * *'
 jobs:
 #将工作流程中运行的所有作业组合在一起
   build:
@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Python 3.9
+      - name: Set up Python 3.10
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9.15
+          python-version: 3.10.9
       - name: Set timezone
         run: |
           cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
